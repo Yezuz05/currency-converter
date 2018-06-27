@@ -2,18 +2,43 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 </head>
 
 <body>
-    <h1>
-        <%= htmlWebpackPlugin.options.myPageHeader %>
-    </h1>
-    <h3>Welcome to the Awesome application</h3>
-
+    <div class="main">
+        <div class="conv-card">
+            <div class="conv-header">
+                <div class="from-curr">1 Mexican Peso equals</div>
+                <div class="to-curr">18.02 Nigerian Naira</div>
+            </div>
+            <div class="conv-body">
+                <div class="converter">
+                    <div class="curr-form">
+                        <input type="number" class="value-input">
+                        <select class="curr-sect" name="" id="">
+                            <option value="">Mexican Peso</option>
+                            <option value="">Nigerian naira</option>
+                        </select>
+                    </div>
+                    <div class="curr-form">
+                        <input type="number" class="value-input">
+                        <select class="curr-sect" name="" id="">
+                            <option value="">Mexican Peso</option>
+                            <option value="">Nigerian naira</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="graph"></div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
