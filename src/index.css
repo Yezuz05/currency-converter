@@ -34,3 +34,38 @@ div.to-curr {
     font-weight: lighter;
     color: #212121;
 }
+
+div.converter {
+    display: grid;
+    grid-row-gap: 10px;
+}
+
+div.curr-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 15px;
+}
+
+input.value-input {
+    height: 30px;
+    border-radius: 4px;
+    border: 0.5px solid silver;
+    text-indent: 10px;
+    font-size: 13px;
+}
+
+input.value-input:focus {
+    outline: none;
+}
+
+select {
+    -webkit-appearance: button;
+    outline: none;
+    overflow: hidden;
+    padding: 10px;
+}
+
+i {
+    position: relative;
+    left: -20px;
+}
