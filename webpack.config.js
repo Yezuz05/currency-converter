@@ -11,8 +11,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             hash: true,
-            title: 'My Currency Converter',
-            myPageHeader: 'Hello World',
+            title: 'Currency Converter ALC',
             template: './src/index.html',
             filename: 'index.html' //relative to root of the application
         })
@@ -23,9 +22,17 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: ['babel-loader']
-        }]
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' }
+                ]
+            }
+        ]
     }
 };
