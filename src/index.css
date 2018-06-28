@@ -47,25 +47,32 @@ div.curr-form {
 }
 
 input.value-input {
-    height: 30px;
-    border-radius: 4px;
+    height: 29px;
     border: 0.5px solid silver;
     text-indent: 10px;
     font-size: 13px;
+    padding: 0px;
+    margin: 0;
+    text-align: right;
 }
 
 input.value-input:focus {
     outline: none;
 }
-
-select {
-    -webkit-appearance: button;
-    outline: none;
-    overflow: hidden;
-    padding: 10px;
+select::-ms-expand {
+    display: none;
 }
 
-i {
-    position: relative;
-    left: -20px;
+.curr-select {
+    background: url('up-down.png') 90% / 15% no-repeat whitesmoke;
+}
+
+select{
+    border-radius: 0px;
+    border: 1px solid #ccc;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 30px;
+    padding: 5px;
 }

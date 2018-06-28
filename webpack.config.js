@@ -32,6 +32,24 @@ module.exports = {
                     { loader: 'style-loader' },
                     { loader: 'css-loader' }
                 ]
+            },
+            {
+                test: /\.png$/,
+                use: [
+                  {
+                     loader: 'url-loader',
+                     query: { limit : 15000 }
+                  }
+                ]
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                  {
+                     loader: 'url-loader',
+                     query: { limit : 15000 }
+                  }
+                ]
             }
         ]
     }
