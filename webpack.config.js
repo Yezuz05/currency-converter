@@ -16,6 +16,12 @@ module.exports = {
             filename: 'index.html' //relative to root of the application
         })
     ],
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        },
+        extensions: ['*', '.js', '.vue', '.json']
+    },
     devServer: {
         port: 3000,
         contentBase: path.resolve(__dirname, 'build')
@@ -27,6 +33,10 @@ module.exports = {
                 use: ['babel-loader']
             },
             {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
+            {
                 test: /\.css$/,
                 use: [
                     { loader: 'style-loader' },
@@ -35,21 +45,17 @@ module.exports = {
             },
             {
                 test: /\.png$/,
-                use: [
-                  {
-                     loader: 'url-loader',
-                     query: { limit : 15000 }
-                  }
-                ]
+                use: [{
+                    loader: 'url-loader',
+                    query: { limit: 15000 }
+                }]
             },
             {
                 test: /\.svg$/,
-                use: [
-                  {
-                     loader: 'url-loader',
-                     query: { limit : 15000 }
-                  }
-                ]
+                use: [{
+                    loader: 'url-loader',
+                    query: { limit: 15000 }
+                }]
             }
         ]
     }
