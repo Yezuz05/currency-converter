@@ -3,6 +3,8 @@ import './index.css';
 import Vue from 'vue';
 import axios from 'axios';
 
+import Toast from './toast';
+
 const axiosInstance = axios.create({
     baseURL: 'https://free.currencyconverterapi.com/api/v5/'
 });
@@ -25,6 +27,7 @@ const app = new Vue({
     },
     mounted() {
         this.getCurrencies();
+        this.registerServiceWorker();
     },
     methods: {
         getCurrencies: function() {
@@ -60,6 +63,77 @@ const app = new Vue({
                             break;
                     }
                 })
+        },
+        registerServiceWorker() {
+            if (!navigator.serviceWorker) return;
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    if (!navigator.serviceWorker.controller) {
+                        return;
+                      }
+                  
+                      if (reg.waiting) {
+                        this.updateReady(reg.waiting);
+                        return;
+                      }
+                  
+                      if (reg.installing) {
+                        this.trackInstalling(reg.installing);
+                        return;
+                      }
+                  
+                      reg.addEventListener('updatefound', function() {
+                        this.trackInstalling(reg.installing);
+                      });
+                })
+                let refreshing;
+                navigator.serviceWorker.addEventListener('controllerchange', function() {
+                  if (refreshing) return;
+                  window.location.reload();
+                  refreshing = true;
+                });
+        },
+        updateReady(worker) {      
+            new Toast({
+                message: 'There is a new version of the app',
+                type: 'info',
+                customButtons: [
+                {
+                    text: 'Install',
+                    onClick: function() {
+                        worker.postMessage({action: 'skipWaiting'});
+                    }
+                }
+                ]
+            });
+        },
+        trackInstalling(worker) {
+            worker.addEventListener('statechange', function() {
+                if (worker.state == 'installed') {
+                  this.updateReady(worker);
+                }
+              });
         }
     }
 })
+
+
+
+
+new Toast({
+    message: 'This is an example with custom buttons',
+    type: 'success',
+    customButtons: [
+      {
+        text: 'Refresh the page',
+        onClick: function() {
+          window.location.reload();
+        }
+      },
+      {
+        text: 'Follow @ireaderinokun',
+        onClick: function() {
+          window.open('https://twitter.com/ireaderinokun');
+        }
+      }
+    ]
+  });

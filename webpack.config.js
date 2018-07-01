@@ -6,7 +6,7 @@ module.exports = {
     entry: path.resolve(__dirname, 'src'),
     output: {
         path: path.resolve(__dirname, 'docs'),
-        filename: 'bundle.js'
+        filename: '[name].[chunkhash].js',
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -24,14 +24,16 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        contentBase: path.resolve(__dirname, 'build')
+        contentBase: path.resolve(__dirname, 'build'),
+        filename: '[name].[chunkhash].js',
     },
     module: {
         rules: [{
                 test: /\.js$/,
-                exclude: /node_modules/,
+                exclude: [/node_modules/],
                 use: ['babel-loader']
             },
+
             {
                 test: /\.vue$/,
                 loader: 'vue-loader'
