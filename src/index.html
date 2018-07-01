@@ -22,7 +22,7 @@
             <div class="conv-body">
                 <div class="converter">
                     <div class="curr-form">
-                        <input type="number" @blur="convert()" v-model="fromVal" class="value-input">
+                        <input type="number" @keyup="convert()" @blur="convert()" v-model="fromVal" class="value-input">
                         <div class="select">
                             <select v-model="fromCurr" @change="convert()" class="curr-select" name="" id="">
                                 <option
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="curr-form">
-                        <input type="number" @blur="convert(true)" v-model="toVal" class="value-input">
+                        <input type="number" @keyup="convert(true)" @blur="convert(true)" v-model="toVal" class="value-input">
                         <div class="select">
                             <select v-model="toCurr" @change="convert(true)" class="curr-select" name="" id="">
                                 <option
