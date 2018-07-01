@@ -13,31 +13,37 @@
 </head>
 
 <body>
-    <div class="main">
+    <div id="app" class="main">
         <div class="conv-card">
             <div class="conv-header">
-                <div class="from-curr">1 Mexican Peso equals</div>
-                <div class="to-curr">18.02 Nigerian Naira</div>
+                <div class="from-curr">{{fromVal}} {{fromCurr.currencyName}} equals</div>
+                <div class="to-curr">{{toVal}} {{toCurr.currencyName}}</div>
             </div>
             <div class="conv-body">
                 <div class="converter">
                     <div class="curr-form">
-                        <input type="number" class="value-input">
+                        <input type="number" @blur="convert()" v-model="fromVal" class="value-input">
                         <div class="select">
-                            <select class="curr-select" name="" id="">
-                                <option value="">Mexican Peso</option>
-                                <option value="">Nigerian naira</option>
-                                <option value="">United States Dollars</option>
+                            <select v-model="fromCurr" @change="convert()" class="curr-select" name="" id="">
+                                <option
+                                    v-for="(currency, index) in currencies"
+                                    :key="index"
+                                    :value="currency">
+                                    {{currency.currencyName}}
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div class="curr-form">
-                        <input type="number" class="value-input">
+                        <input type="number" @blur="convert(true)" v-model="toVal" class="value-input">
                         <div class="select">
-                            <select class="curr-select" name="" id="">
-                                <option value="">Mexican Peso</option>
-                                <option value="">Nigerian naira</option>
-                                <option value="">United States Dollars</option>
+                            <select v-model="toCurr" @change="convert(true)" class="curr-select" name="" id="">
+                                <option
+                                    v-for="(currency, index) in currencies"
+                                    :key="index"
+                                    :value="currency">
+                                    {{currency.currencyName}}
+                                </option>
                             </select>
                         </div>
                     </div>
